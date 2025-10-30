@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Menu } from '../menu/menu';
 import { CategoriesComponent } from '../categories/categories.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ import { CategoriesComponent } from '../categories/categories.component';
     MatIconModule,
     AsyncPipe,
     Menu,
-    CategoriesComponent
+    RouterOutlet
   ]
 })
 export class HomeComponent {
