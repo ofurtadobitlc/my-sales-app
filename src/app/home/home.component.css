@@ -15,3 +15,15 @@
   top: 0;
   z-index: 1;
 }
+
+.mat-toolbar {
+  background-color: blue;
+}
+
+.mat-toolbar span{
+  color: white;
+}
+
+.mat-icon{
+  color: white;
+}
