@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { Category } from '../category.dto';
 
 @Component({
   selector: 'category-form',
@@ -18,10 +19,23 @@ import { MatInputModule } from '@angular/material/input';
 export class CategoryFormComponent {
   private fb = inject(FormBuilder)
 
+  @Output() back = new EventEmitter()
+  @Output() save = new EventEmitter<Category>()
+
   categoryForm = this.fb.group({
     id: [null],
-    name: ["", Validators.required],
+    name: ["", [Validators.required, Validators.minLength(3)]],
     description: ["", Validators.required]
   })
+
+  onSubmit(){
+    console.log('Submit from CategoryFormComponent', this.categoryForm.value)
+    this.save.emit(this.categoryForm.value as Category)
+  }
+
+  onBack(){
+    this.back.emit()
+  }
+
 
 }

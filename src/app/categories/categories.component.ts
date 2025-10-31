@@ -37,7 +37,11 @@ export class CategoriesComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', "description"];
 
+
   constructor(private categoryService: CategoryService){}
+
+
+  showForm: Boolean = false
 
   ngAfterViewInit(): void {
     //this.dataSource.sort = this.sort;
@@ -53,6 +57,19 @@ export class CategoriesComponent implements AfterViewInit {
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
  
+  }
+
+  onNewCategoryClick(){
+    this.showForm = true
+  }
+
+  hideCategoryform(){
+    this.showForm = false
+    this.loadCategories()
+  }
+
+  onSave(category: Category){
+    console.log('Save Category from CategoriesComponent', category)
   }
 
 
