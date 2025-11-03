@@ -9,6 +9,7 @@ import { Category } from './category.dto';
 import { CategoryService } from './category.service';
 import { lastValueFrom } from 'rxjs';
 import { CategoryFormComponent } from './form/form';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-categories',
@@ -25,6 +26,7 @@ import { CategoryFormComponent } from './form/form';
     MatSortModule,
     MatCardModule,
     MatButtonModule,
+    MatIconModule,
     CategoryFormComponent
   ]
 })
@@ -87,6 +89,13 @@ export class CategoriesComponent implements OnInit {
     console.log('Edit Category ', category)
     this.category = category
     this.showForm = true
+  }
+
+  async onDeleteCategoryClick(category: Category){
+    if(confirm(`Delete "${category.name}" with id ${category.id} ?`)){
+      await lastValueFrom(this.categoryService.delete(category.id))
+      this.loadCategories()
+    }
   }
 
 

@@ -38,9 +38,17 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
               <td mat-cell *matCellDef="let row">
                 <button
-                mat-button
-                (click)="onEditCategoryClick(row)">
-                Edit</button>
+                  mat-button
+                  (click)="onEditCategoryClick(row)">
+                  Edit
+                </button>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="onDeleteCategoryClick(row)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
               </td>
               </ng-container>
 
