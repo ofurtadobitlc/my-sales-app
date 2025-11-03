@@ -10,6 +10,7 @@ import { CategoryService } from './category.service';
 import { lastValueFrom } from 'rxjs';
 import { CategoryFormComponent } from './form/form';
 import { MatIconModule } from '@angular/material/icon';
+import { LoadingBar } from '../loading-bar';
 
 @Component({
   selector: 'app-categories',
@@ -27,7 +28,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    CategoryFormComponent
+    CategoryFormComponent,
+    LoadingBar
   ]
 })
 export class CategoriesComponent implements OnInit {
@@ -39,6 +41,7 @@ export class CategoriesComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', "description", "actions"];
   category!: Category
+  showLoading: Boolean = false
 
 
   constructor(private categoryService: CategoryService){}
@@ -54,12 +57,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   async loadCategories(): Promise<void> {
+    this.showLoading = true
     const categories = await lastValueFrom(this.categoryService.getAll())
     this.dataSource = new MatTableDataSource(categories);
     this.table.dataSource = this.dataSource
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
- 
+    this.showLoading = false
   }
 
   onNewCategoryClick(){
@@ -93,7 +97,9 @@ export class CategoriesComponent implements OnInit {
 
   async onDeleteCategoryClick(category: Category){
     if(confirm(`Delete "${category.name}" with id ${category.id} ?`)){
+      this.showLoading = true
       await lastValueFrom(this.categoryService.delete(category.id))
+      this.showLoading = false
       this.loadCategories()
     }
   }
