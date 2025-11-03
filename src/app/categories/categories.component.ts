@@ -68,8 +68,13 @@ export class CategoriesComponent implements AfterViewInit {
     this.loadCategories()
   }
 
-  onSave(category: Category){
+  async onSave(category: Category){
     console.log('Save Category from CategoriesComponent', category)
+    
+    const saved = lastValueFrom(this.categoryService.save(category))
+    console.log('Saved', saved)
+    this.hideCategoryform()
+    
   }
 
 
