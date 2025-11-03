@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -27,6 +27,12 @@ export class CategoryFormComponent {
     name: ["", [Validators.required, Validators.minLength(3)]],
     description: ["", Validators.required]
   })
+
+  @Input()
+  set category(category: Category) {
+    this.categoryForm.setValue(category);
+  }
+
 
   onSubmit(){
     console.log('Submit from CategoryFormComponent', this.categoryForm.value)

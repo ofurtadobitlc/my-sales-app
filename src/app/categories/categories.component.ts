@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
@@ -28,14 +28,15 @@ import { CategoryFormComponent } from './form/form';
     CategoryFormComponent
   ]
 })
-export class CategoriesComponent implements AfterViewInit {
+export class CategoriesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<CategoriesItem>;
   dataSource = new MatTableDataSource<Category>()
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', "description"];
+  displayedColumns = ['id', 'name', "description", "actions"];
+  category!: Category
 
 
   constructor(private categoryService: CategoryService){}
@@ -43,7 +44,7 @@ export class CategoriesComponent implements AfterViewInit {
 
   showForm: Boolean = false
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     //this.dataSource.sort = this.sort;
     //this.dataSource.paginator = this.paginator;
     //this.table.dataSource = this.dataSource;
@@ -60,6 +61,11 @@ export class CategoriesComponent implements AfterViewInit {
   }
 
   onNewCategoryClick(){
+    this.category = {
+      id: 0,
+      name: "",
+      description: ""
+    }
     this.showForm = true
   }
 
@@ -74,7 +80,13 @@ export class CategoriesComponent implements AfterViewInit {
     const saved = lastValueFrom(this.categoryService.save(category))
     console.log('Saved', saved)
     this.hideCategoryform()
-    
+
+  }
+
+  onEditCategoryClick(category: Category){
+    console.log('Edit Category ', category)
+    this.category = category
+    this.showForm = true
   }
 
 
