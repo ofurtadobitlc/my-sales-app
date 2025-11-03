@@ -1,16 +1,14 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
-import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
-import { MatSortModule, MatSort } from '@angular/material/sort';
-import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { CategoriesItem } from './categories-datasource';
 import { Category } from './category.dto';
 import { CategoryService } from './category.service';
 import { lastValueFrom } from 'rxjs';
 import { CategoryFormComponent } from './form/form';
-import { MatIconModule } from '@angular/material/icon';
 import { LoadingBar } from '../loading-bar';
+import { MaterialModule } from '../material-module';
 
 @Component({
   selector: 'app-categories',
@@ -22,12 +20,7 @@ import { LoadingBar } from '../loading-bar';
     
   `,
   imports: [
-    MatTableModule, 
-    MatPaginatorModule, 
-    MatSortModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
+    MaterialModule,
     CategoryFormComponent,
     LoadingBar
   ]
