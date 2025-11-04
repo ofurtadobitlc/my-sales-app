@@ -6,6 +6,8 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { MaterialModule } from '../../material-module';
 import { LoadingBar } from '../../loading-bar';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { CartService } from '../../cart.service';
+import { CartItem } from '../../cart.dto';
 
 @Component({
   selector: 'app-products-list',
@@ -15,6 +17,7 @@ import { AsyncPipe, CurrencyPipe } from '@angular/common';
 })
 export class ProductsList implements OnInit {
   productService = inject(ProductService)
+  cartService = inject(CartService)
   fb = inject(FormBuilder)
   products: Product[]
   productsObservable: Observable<Product[]>
@@ -36,6 +39,16 @@ export class ProductsList implements OnInit {
 
   onSearch() {
     this.getProducts(this.searchForm.value.searchTerm)
+  }
+
+  onAddToCart(item: Product) {
+    const cartItem: CartItem = {
+      idProduct: item.id,
+      name: item.name,
+      quantity: 1,
+      unitPrice: item.unitPrice
+    }
+    this.cartService.addItem(cartItem)
   }
 
 }
