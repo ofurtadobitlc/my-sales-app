@@ -10,7 +10,9 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Menu } from '../menu/menu';
 import { CategoriesComponent } from '../categories/categories.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CartService } from '../cart.service';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
   selector: 'app-home',
@@ -24,11 +26,14 @@ import { RouterOutlet } from '@angular/router';
     MatIconModule,
     AsyncPipe,
     Menu,
-    RouterOutlet
+    RouterOutlet,
+    MatBadgeModule,
+    RouterLink
   ]
 })
 export class HomeComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  cartService = inject(CartService)
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
