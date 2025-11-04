@@ -20,11 +20,11 @@ export class SupplierService {
   }
 
   public save(supplier: Supplier): Observable<Supplier> {
-    if(supplier.id){
+    if(supplier.id > 0){
       return this.http.put<Supplier>(environment.api + "suppliers/" + supplier.id, supplier)
     }
 
-    return this.http.post<Supplier>(environment.api + "suppliers/" + supplier.id, supplier)
+    return this.http.post<Supplier>(environment.api + "suppliers/", supplier)
 
   }
 
