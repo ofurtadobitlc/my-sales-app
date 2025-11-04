@@ -7,6 +7,8 @@ import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-sho
 import { SuppliersEditComponent } from './suppliers/suppliers-edit/suppliers-edit';
 import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete';
 import { SuppliersNewComponent } from './suppliers/suppliers-new/suppliers-new';
+import { ProductsComponent } from './products/products.component';
+import { ProductsList } from './products/products-list/products-list';
 
 export const routes: Routes = [
     {
@@ -14,8 +16,14 @@ export const routes: Routes = [
         component: CategoriesComponent
     },
     {
-    path:'',
-        component: DashboardComponent
+        path:'',
+        component: ProductsComponent,
+        children: [
+            {
+                path: '',
+                component: ProductsList
+            }
+        ]
     },
     {
         path: 'suppliers',
