@@ -18,7 +18,7 @@ interface MenuItem {
   imports: [MatListModule],
   template: `
     @for(item of menuItems ; track item.path ){
-      <a mat-list-item [href]="item.path">{{item.label}}</a>
+      <a mat-list-item  [href]="item.path" >{{item.label}}</a>
     }
   `,
   styles: ``,

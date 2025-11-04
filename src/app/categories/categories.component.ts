@@ -17,7 +17,11 @@ import { MaterialModule } from '../material-module';
     .full-width-table {
       width: 100%;
     }
-    
+    .mat-mdc-row:nth-child(2n) {
+      background-color: #e4e4ea;
+    }
+  
+
   `,
   imports: [
     MaterialModule,
