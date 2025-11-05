@@ -18,7 +18,7 @@ import { MaterialModule } from '../material-module';
       width: 100%;
     }
     .mat-mdc-row:nth-child(2n) {
-      background-color: #e4e4ea;
+      background-color: #e0e3e2;
     }
   
 
