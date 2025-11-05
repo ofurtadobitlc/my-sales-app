@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
+import { RouterLink } from '@angular/router';
 
 
 interface MenuItem {
@@ -15,13 +16,25 @@ interface MenuItem {
 
 @Component({
   selector: 'app-menu',
-  imports: [MatListModule],
+  imports: [MatListModule, RouterLink],
   template: `
     @for(item of menuItems ; track item.path ){
-      <a mat-list-item  [href]="item.path" >{{item.label}}</a>
+        <a
+          mat-list-item
+          [routerLink]="item.path"
+          routerLinkActive="active-link"
+  >
+    {{ item.label }}
+  </a>
     }
   `,
-  styles: ``,
+  styles: `
+    .active-link.mat-mdc-list-item {
+      background-color: var(--mdc-theme-primary, #3f51b5);
+      color: white;
+    }
+    
+  `,
 })
 export class Menu {
 
