@@ -33,3 +33,20 @@ body {
   // Reset the user agent margin.
   margin: 0;
 }
+
+:root {
+  @include mat.toolbar-overrides((
+    container-background-color: rgb(0, 106, 106),
+    container-text-color: white,
+  ));
+
+  @include mat.icon-button-overrides((
+    //icon-color: rgb(0, 106, 106),
+  ));
+
+  @include mat.card-overrides((
+    
+  ));
+
+}
+
