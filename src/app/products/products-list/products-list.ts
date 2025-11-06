@@ -8,10 +8,11 @@ import { LoadingBar } from '../../loading-bar';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { CartService } from '../../cart.service';
 import { CartItem } from '../../cart.dto';
+import { ProductCard } from '../product-card/product-card';
 
 @Component({
   selector: 'app-products-list',
-  imports: [MaterialModule, LoadingBar, AsyncPipe, CurrencyPipe],
+  imports: [MaterialModule, AsyncPipe, ProductCard, LoadingBar ],
   templateUrl: './products-list.html',
   styles: ``,
 })

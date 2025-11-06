@@ -14,7 +14,10 @@ import { CheckoutComponent } from './checkout/checkout';
 export const routes: Routes = [
     {
         path: 'categories',
-        component: CategoriesComponent
+        loadComponent: () => 
+            import("./categories/categories.component").then(
+                (c) => c.CategoriesComponent
+            )
     },
     {
         path:'',
