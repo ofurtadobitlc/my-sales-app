@@ -23,7 +23,6 @@ export class SuppliersShowComponent implements OnInit{
     const id: Number = +(this.route.snapshot.paramMap.get("id") || 0) 
     this.supplierObservable = this.supplierService.getById(id)
     this.supplier = await lastValueFrom(this.supplierObservable)
-    console.log(this.supplier)
   }
 
 }
