@@ -21,7 +21,7 @@
       }
       <span>Sales App</span>
       
-      <!-- CART BUTTON -->
+      
       <div class="width-full"></div>
       <div style="display: flex; align-items: center; gap: 10px;">
         <button mat-icon-button (click)="onChangeTheme()">
@@ -35,6 +35,8 @@
             </mat-icon>
           }
         </button>
+        
+        <!-- CART BUTTON -->
         <button mat-icon-button [routerLink]="['/checkout']">
           <mat-icon
             [matBadge]="cartService.itensInCart"
