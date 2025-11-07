@@ -23,18 +23,22 @@
             
         </div>
 
-        <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="!categoryForm.valid"
-        >
-            Save
-        </button>
+        <div style="display: flex; align-items: center;">
+            <mat-card-actions>
+                <button type="button" mat-button color="primary" (click)="onBack()">
+                    Back
+                </button>
+            </mat-card-actions>
+            <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="!categoryForm.valid"
+            >
+                Save
+            </button>
+
+        </div>
     </form>
-    <mat-card-actions>
-        <button type="button" mat-button color="primary" (click)="onBack()">
-            Back
-        </button>
-    </mat-card-actions>
+
 </mat-card-content>
