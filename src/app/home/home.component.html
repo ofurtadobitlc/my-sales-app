@@ -23,14 +23,28 @@
       
       <!-- CART BUTTON -->
       <div class="width-full"></div>
-      <button mat-icon-button [routerLink]="['/checkout']">
-        <mat-icon
-          [matBadge]="cartService.itensInCart"
-          matBadgeColor="warn"
-        >
-          shopping_cart
-        </mat-icon>
-      </button>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button mat-icon-button (click)="onChangeTheme()">
+          @if(currentScheme === 'light'){
+            <mat-icon>
+              bedtime
+            </mat-icon>
+          } @else {
+            <mat-icon>
+              sunny
+            </mat-icon>
+          }
+        </button>
+        <button mat-icon-button [routerLink]="['/checkout']">
+          <mat-icon
+            [matBadge]="cartService.itensInCart"
+            matBadgeColor="warn"
+          >
+            shopping_cart
+          </mat-icon>
+        </button>
+
+      </div>
 
     </mat-toolbar>
     <div class="m-10">
