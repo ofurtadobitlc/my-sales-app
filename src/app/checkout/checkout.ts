@@ -3,10 +3,11 @@ import { CartService } from '../cart.service';
 import { CartItem } from '../cart.dto';
 import { MaterialModule } from '../material-module';
 import { CurrencyPipe } from '@angular/common';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-checkout',
-  imports: [MaterialModule, CurrencyPipe],
+  imports: [MaterialModule, CurrencyPipe, MatDividerModule],
   templateUrl: './checkout.html',
   styles: ``,
 })
