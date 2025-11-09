@@ -7,7 +7,8 @@ export interface Product {
     supplier?: Supplier;
     category?: Category;
     unitPrice: number;
-    unitsInStock: number;
+    unitsInStock?: number;
     name: string;
-    discontinued: Boolean;
+    discontinued?: Boolean;
+    imageUrl?: string;
 }

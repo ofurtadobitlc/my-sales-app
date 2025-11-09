@@ -6,7 +6,7 @@
 @use '@angular/material' as mat;
 
 html {
-  @include mat.theme((color: (primary: mat.$magenta-palette,
+  @include mat.theme((color: (primary: mat.$blue-palette,
         tertiary: mat.$orange-palette,
       ),
       typography: Roboto,
