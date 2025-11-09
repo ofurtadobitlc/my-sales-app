@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../product';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from '../products.dto';
-import { lastValueFrom, Observable } from 'rxjs';
+import { debounceTime, distinct, distinctUntilChanged, lastValueFrom, Observable, startWith, switchMap } from 'rxjs';
 import { MaterialModule } from '../../material-module';
 import { LoadingBar } from '../../loading-bar';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
@@ -28,18 +28,23 @@ export class ProductsList implements OnInit {
       searchTerm: ['']
     })
 
-     this.getProducts()
-
+    this.searchForm.get('searchTerm').valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => this.productService.getAll(term))
+    ).subscribe(products => {
+      this.products = products
+    })
+     
+    await this.getProducts()
   }
 
-  private async getProducts(searchTerm?: string) {
-    this.productsObservable = this.productService.getAll(searchTerm)
-    this.products = await lastValueFrom(this.productsObservable)
-  }
 
-  onSearch() {
-    this.getProducts(this.searchForm.value.searchTerm)
-  }
+  private async getProducts(searchTerm: string = '') {
+  this.productsObservable = this.productService.getAll(searchTerm)
+  this.products = await lastValueFrom(this.productsObservable)
+}
 
   onAddToCart(item: Product) {
     const cartItem: CartItem = {
