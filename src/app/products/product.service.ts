@@ -3,11 +3,12 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from './products.dto';
 import { environment } from '../../environments/environment';
+import { ProductDataSource } from './product-data-source';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class ProductService implements ProductDataSource {
 
   http = inject(HttpClient)
 

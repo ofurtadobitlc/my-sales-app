@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ProductService } from '../product';
+import { ProductService } from '../product.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from '../products.dto';
 import { debounceTime, distinct, distinctUntilChanged, lastValueFrom, Observable, startWith, switchMap } from 'rxjs';
@@ -8,6 +8,8 @@ import { LoadingBar } from '../../loading-bar';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { CartService } from '../../cart.service';
 import { CartItem } from '../../cart.dto';
+import { ProductServiceNew } from '../product.service-new';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-products-list',
@@ -16,10 +18,11 @@ import { CartItem } from '../../cart.dto';
   styles: ``,
 })
 export class ProductsList implements OnInit {
-  productService = inject(ProductService)
+  productService = inject(ProductServiceNew)
   cartService = inject(CartService)
   fb = inject(FormBuilder)
   products: Product[]
+  api2 = environment.api2
   productsObservable: Observable<Product[]>
   searchForm: FormGroup
 
