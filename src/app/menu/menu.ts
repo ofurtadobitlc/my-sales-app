@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
+import { MaterialModule } from "../material-module";
 
 
 interface MenuItem {
@@ -12,18 +13,24 @@ interface MenuItem {
   * The text that will be displayed in the menu
   */
   label: string;
+  /**
+  * The icon that will be displayed in the menu
+  */
+  icon: string;
 }
 
 @Component({
   selector: 'app-menu',
-  imports: [MatListModule, RouterLink],
+  imports: [MatListModule, RouterLink, MaterialModule],
   template: `
     @for(item of menuItems ; track item.path ){
+        
         <a
           mat-list-item
           [routerLink]="item.path"
           routerLinkActive="active-link"
   >
+    <mat-icon matListItemIcon >{{item.icon}}</mat-icon>
     {{ item.label }}
   </a>
     }
@@ -42,15 +49,18 @@ export class Menu {
   menuItems: Array<MenuItem> = [
       {
         path: '/',
-        label: 'Home'
+        label: 'Home',
+        icon: 'home'
       },
             {
         path: '/categories',
-        label: 'Categories'
+        label: 'Categories',
+        icon: 'category'
       },
       {
         path: '/suppliers',
-        label: 'Suppliers'
+        label: 'Suppliers',
+        icon: 'inventory_2'
       }
     
   ]

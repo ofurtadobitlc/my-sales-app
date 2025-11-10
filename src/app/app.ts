@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HomeComponent } from './home/home.component';
+import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,12 @@ import { HomeComponent } from './home/home.component';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit  {
+
+  matIconReg = inject(MatIconRegistry)
+
+  ngOnInit(): void {
+    this.matIconReg.setDefaultFontSetClass('material-symbols-outlined');
+  }
   
 }
